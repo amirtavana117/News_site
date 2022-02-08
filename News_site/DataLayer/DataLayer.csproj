@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\NewsContext.cs" />
+    <Compile Include="Migrations\202202082013542_InitialMigrate.cs" />
+    <Compile Include="Migrations\202202082013542_InitialMigrate.designer.cs">
+      <DependentUpon>202202082013542_InitialMigrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsComment.cs" />
     <Compile Include="Models\NewsGroups.cs" />
@@ -51,6 +56,11 @@
     <PackageReference Include="EntityFramework">
       <Version>6.4.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202202082013542_InitialMigrate.resx">
+      <DependentUpon>202202082013542_InitialMigrate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
