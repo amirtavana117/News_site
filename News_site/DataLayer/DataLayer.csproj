@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\NewsContext.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsComment.cs" />
     <Compile Include="Models\NewsGroups.cs" />
