@@ -15,5 +15,10 @@ namespace DataLayer
         [MaxLength(30)]
         [Required(ErrorMessage = "وارد کنید{0} لطفا ")]
         public string GroupTitle { get; set; }
+        public virtual List<News> news { get; set; }
+        public NewsGroups()
+        {
+
+        }
     }
 }

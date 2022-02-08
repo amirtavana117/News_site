@@ -29,5 +29,10 @@ namespace DataLayer
         public string Comment { get; set; }
         [Display(Name = "زمان ایجاد")]
         public DateTime CreateDate { get; set; }
+        public virtual News News { get; set; }
+        public NewsComment()
+        {
+
+        }
     }
 }

@@ -36,6 +36,12 @@ namespace DataLayer
         public bool ShoWInslider { get; set; }
         [Display(Name = "زمان ایجاد")]
         public DateTime CreateDate { get; set; }
+        public virtual List<NewsComment> newsComments { get; set; }
+        public virtual NewsGroups newsGroups { get; set; }
+        public News()
+        {
+
+        }
     }
 
 }
