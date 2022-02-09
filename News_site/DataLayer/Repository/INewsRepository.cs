@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public interface NewsRepository
+    public interface INewsRepository :IDisposable
     {
         IEnumerable<News> GetAllNewsREpository();
         News GetNewsById(int id);
