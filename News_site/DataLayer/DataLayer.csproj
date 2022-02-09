@@ -52,6 +52,7 @@
     <Compile Include="Models\NewsGroups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\INewsGroupRepository.cs" />
+    <Compile Include="Repository\NewsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework">
