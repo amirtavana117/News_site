@@ -12,12 +12,16 @@ namespace News_site.Areas.Admin.Controllers
 {
     public class NewsGroupsController : Controller
     {
-        private NewsContext db = new NewsContext();
+        INewsGroupRepository newsGroupRepository;
+        public NewsGroupsController()
+        {
+            newsGroupRepository = new NewsGroupRepository();
+        }
 
         // GET: Admin/NewsGroups
         public ActionResult Index()
         {
-            return View(db.newsGroups.ToList());
+            return View(newsGroupRepository.GetAllNewsGroups());
         }
 
         // GET: Admin/NewsGroups/Details/5
@@ -27,7 +31,7 @@ namespace News_site.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsGroups newsGroups = db.newsGroups.Find(id);
+            NewsGroups newsGroups = newsGroupRepository.GetNewsById(id.Value);
             if (newsGroups == null)
             {
                 return HttpNotFound();
@@ -50,8 +54,8 @@ namespace News_site.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.newsGroups.Add(newsGroups);
-                db.SaveChanges();
+                newsGroupRepository.insertNewsGroup(newsGroups);
+                newsGroupRepository.save();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +69,7 @@ namespace News_site.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsGroups newsGroups = db.newsGroups.Find(id);
+            NewsGroups newsGroups = newsGroupRepository.GetNewsById(id.Value);
             if (newsGroups == null)
             {
                 return HttpNotFound();
@@ -82,8 +86,8 @@ namespace News_site.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newsGroups).State = EntityState.Modified;
-                db.SaveChanges();
+                newsGroupRepository.updateNewsGroup(newsGroups);
+                newsGroupRepository.save();
                 return RedirectToAction("Index");
             }
             return View(newsGroups);
@@ -96,7 +100,7 @@ namespace News_site.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsGroups newsGroups = db.newsGroups.Find(id);
+            NewsGroups newsGroups = newsGroupRepository.GetNewsById(id.Value);
             if (newsGroups == null)
             {
                 return HttpNotFound();
@@ -109,9 +113,9 @@ namespace News_site.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewsGroups newsGroups = db.newsGroups.Find(id);
-            db.newsGroups.Remove(newsGroups);
-            db.SaveChanges();
+
+            newsGroupRepository.DeleteNewsGroup(id);
+            newsGroupRepository.save();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +123,7 @@ namespace News_site.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                newsGroupRepository.Dispose();
             }
             base.Dispose(disposing);
         }
