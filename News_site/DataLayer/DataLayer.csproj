@@ -46,6 +46,10 @@
     <Compile Include="Migrations\202202082013542_InitialMigrate.designer.cs">
       <DependentUpon>202202082013542_InitialMigrate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202131824423_Change_News.cs" />
+    <Compile Include="Migrations\202202131824423_Change_News.designer.cs">
+      <DependentUpon>202202131824423_Change_News.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsComment.cs" />
@@ -64,6 +68,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202202082013542_InitialMigrate.resx">
       <DependentUpon>202202082013542_InitialMigrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202131824423_Change_News.resx">
+      <DependentUpon>202202131824423_Change_News.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

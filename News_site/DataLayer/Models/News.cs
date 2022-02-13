@@ -30,7 +30,7 @@ namespace DataLayer
         public string NewsText { get; set; }
         [Display(Name = "بازدید")]
         public int visited { get; set; }
-        [Display(Name = "نام تصویر")]
+        [Display(Name = "تصویر")]
         public string ImageName { get; set; }
         [Display(Name = "اسلایدر")]
         public bool ShoWInslider { get; set; }

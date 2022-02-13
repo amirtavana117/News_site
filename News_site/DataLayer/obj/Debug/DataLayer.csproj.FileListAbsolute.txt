@@ -9,3 +9,4 @@ C:\Users\AmirMahdi\Desktop\News_site\News_site\DataLayer\obj\Debug\DataLayer.dll
 C:\Users\AmirMahdi\Desktop\News_site\News_site\DataLayer\obj\Debug\DataLayer.pdb
 C:\Users\AmirMahdi\Desktop\News_site\News_site\DataLayer\obj\Debug\DataLayer.Migrations.InitialMigrate.resources
 C:\Users\AmirMahdi\Desktop\News_site\News_site\DataLayer\obj\Debug\DataLayer.csproj.GenerateResource.cache
+C:\Users\AmirMahdi\Desktop\News_site\News_site\DataLayer\obj\Debug\DataLayer.Migrations.Change_News.resources

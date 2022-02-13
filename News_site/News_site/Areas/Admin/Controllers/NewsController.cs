@@ -48,10 +48,12 @@ namespace News_site.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news)
+        public ActionResult Create([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news,HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
+                news.CreateDate = DateTime.Now;
+                news.visited = 0;
                 db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
