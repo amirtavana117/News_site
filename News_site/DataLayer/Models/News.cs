@@ -35,6 +35,7 @@ namespace DataLayer
         [Display(Name = "اسلایدر")]
         public bool ShoWInslider { get; set; }
         [Display(Name = "زمان ایجاد")]
+        [DisplayFormat(DataFormatString ="{0:yyyy/MM/dd}")]
         public DateTime CreateDate { get; set; }
         public virtual List<NewsComment> newsComments { get; set; }
         public virtual NewsGroups newsGroups { get; set; }

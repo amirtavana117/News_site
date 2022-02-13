@@ -65,7 +65,7 @@ namespace News_site.Areas.Admin.Controllers
                 if(imgUp != null)
                 {
                     news.ImageName = Guid.NewGuid() + Path.GetExtension(imgUp.FileName);
-                    imgUp.SaveAs(Server.MapPath("/NewsImages" + news.ImageName));
+                    imgUp.SaveAs(Server.MapPath("/NewsImages/"+news.ImageName   ));
                 }
                 newsRepository.insertNews(news);
                 newsRepository.save();

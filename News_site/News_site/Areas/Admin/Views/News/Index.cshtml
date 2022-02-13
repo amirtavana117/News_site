@@ -12,22 +12,17 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.newsGroups.GroupTitle)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NewsTitle)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortDescribtion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NewsText)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.visited)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShoWInslider)
@@ -41,22 +36,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+           <img src="~/NewsImages/@item.ImageName" class="thumbnail" style="max-width:150px"/>
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.newsGroups.GroupTitle)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NewsTitle)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortDescribtion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NewsText)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.visited)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShoWInslider)
