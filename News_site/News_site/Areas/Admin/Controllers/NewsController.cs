@@ -14,7 +14,7 @@ namespace News_site.Areas.Admin.Controllers
     public class NewsController : Controller
     {
         private INewsRepository newsRepository;
-        private  INewsGroupRepository newsGroupRepository;
+        private INewsGroupRepository newsGroupRepository;
         private NewsContext db = new NewsContext();
         public NewsController()
         {
@@ -25,7 +25,7 @@ namespace News_site.Areas.Admin.Controllers
         // GET: Admin/News
         public ActionResult Index()
         {
-           
+
             return View(newsRepository.GetAllNewsREpository());
         }
 
@@ -56,16 +56,16 @@ namespace News_site.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news,HttpPostedFileBase imgUp)
+        public ActionResult Create([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news, HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
                 news.CreateDate = DateTime.Now;
                 news.visited = 0;
-                if(imgUp != null)
+                if (imgUp != null)
                 {
                     news.ImageName = Guid.NewGuid() + Path.GetExtension(imgUp.FileName);
-                    imgUp.SaveAs(Server.MapPath("/NewsImages/"+news.ImageName   ));
+                    imgUp.SaveAs(Server.MapPath("/NewsImages/" + news.ImageName));
                 }
                 newsRepository.insertNews(news);
                 newsRepository.save();
@@ -97,10 +97,19 @@ namespace News_site.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news)
+        public ActionResult Edit([Bind(Include = "NewsId,GroupId,NewsTitle,ShortDescribtion,NewsText,visited,ImageName,ShoWInslider,CreateDate")] News news, HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
+                if (imgUp != null)
+                {
+                    if (news.ImageName != null)
+                    {
+                        System.IO.File.Delete(Server.MapPath("/NewsImages/" + news.ImageName));
+                    }
+                    news.ImageName = Guid.NewGuid() + Path.GetExtension(imgUp.FileName);
+                    imgUp.SaveAs(Server.MapPath("/NewsImages/" + news.ImageName));
+                }
                 newsRepository.updateNews(news);
                 newsRepository.save();
                 return RedirectToAction("Index");
@@ -129,7 +138,14 @@ namespace News_site.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var news = newsRepository.GetNewsById(id);
+            if (news.ImageName != null)
+            {
 
+                System.IO.File.Delete(Server.MapPath("/NewsImages/" + news.ImageName));
+
+
+            }
             newsRepository.DeleteNews(id);
             newsRepository.save();
             return RedirectToAction("Index");
