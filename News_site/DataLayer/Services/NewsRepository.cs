@@ -11,7 +11,11 @@ namespace DataLayer
     {
 
 
-        NewsContext db = new NewsContext();
+        NewsContext db;
+        public NewsRepository(NewsContext context)
+        {
+            this.db = context;
+        }
         public IEnumerable<News> GetAllNewsREpository()
         {
             return db.news;

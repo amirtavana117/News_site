@@ -13,9 +13,10 @@ namespace News_site.Areas.Admin.Controllers
     public class NewsGroupsController : Controller
     {
         INewsGroupRepository newsGroupRepository;
+        NewsContext db = new NewsContext();
         public NewsGroupsController()
         {
-            newsGroupRepository = new NewsGroupRepository();
+            newsGroupRepository = new NewsGroupRepository(db);
         }
 
         // GET: Admin/NewsGroups
@@ -124,6 +125,7 @@ namespace News_site.Areas.Admin.Controllers
             if (disposing)
             {
                 newsGroupRepository.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
